@@ -5,7 +5,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
+        <h1>Pomodoro Clock</h1>
+        <div id="abc">
+          <div id="break-label">Break Length</div>
+          <div id="session-label">Session Length</div>
+        </div>
       </div>
     );
   }
