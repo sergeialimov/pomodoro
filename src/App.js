@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import arrowUp from './img/01.png';
+import arrowDown from './img/02.png';
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +22,13 @@ class App extends Component {
             <div className="break-session">
               <div id="break-label">Break Length</div>
               <div id="wrapper">
-                <div id="break-decrement"></div>
+                <input
+                  id="break-decrement"
+                  type="image"
+                  src={arrowDown}
+                  alt={'down'}
+                  onClick={this.onClick}
+                />
                 <div id="counter">{this.state.break}</div>
                 <div id="session-decrement"></div>
               </div>
@@ -28,6 +36,13 @@ class App extends Component {
             <div className="break-session">
               <div id="session-label">Session Length</div>
               <div id="wrapper">
+                <input
+                  id="break-increment"
+                  type="image"
+                  src={arrowUp}
+                  alt={'up'}
+                  onClick={this.onClick}
+                />
                 <div id="break-decrement"></div>
                 <div id="counter">{this.state.session}</div>
                 <div id="session-decrement"></div>
