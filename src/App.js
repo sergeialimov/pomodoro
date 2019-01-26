@@ -23,6 +23,7 @@ class App extends Component {
               <div id="break-label">Break Length</div>
               <div id="wrapper">
                 <input
+                  className="arrows"
                   id="break-decrement"
                   type="image"
                   src={arrowDown}
@@ -30,22 +31,36 @@ class App extends Component {
                   onClick={this.onClick}
                 />
                 <div id="counter">{this.state.break}</div>
-                <div id="session-decrement"></div>
+                <input
+                  className="arrows"
+                  id="break-increment"
+                  type="image"
+                  src={arrowUp}
+                  alt={'down'}
+                  onClick={this.onClick}
+                />
               </div>
             </div>
             <div className="break-session">
               <div id="session-label">Session Length</div>
               <div id="wrapper">
                 <input
-                  id="break-increment"
+                  className="arrows"
+                  id="session-decrement"
+                  type="image"
+                  src={arrowDown}
+                  alt={'up'}
+                  onClick={this.onClick}
+                />
+                <div id="counter">{this.state.session}</div>
+                <input
+                  className="arrows"
+                  id="session-increment"
                   type="image"
                   src={arrowUp}
                   alt={'up'}
                   onClick={this.onClick}
                 />
-                <div id="break-decrement"></div>
-                <div id="counter">{this.state.session}</div>
-                <div id="session-decrement"></div>
               </div>
             </div>
           </div>

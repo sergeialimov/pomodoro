@@ -59,21 +59,18 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-#break-decrement {
+.arrows {
   width: 30px;
   height: 30px;
-  background-color: orange;
+}
+
+#break-decrement {
 }
 
 #session-decrement {
-  width: 30px;
-  height: 30px;
-  background-color: red;
 }
+
 #session-increment {
-  width: 30px;
-  height: 30px;
-  background-color: red;
 }
 
 #counter {
