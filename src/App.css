@@ -12,6 +12,7 @@
 
 h1 {
   font-size: 35px;
+  margin-bottom: 40px;
 }
 
 #abc {
@@ -20,4 +21,36 @@ h1 {
   font-size: 23px;
   font-weight: 600;
   /* grid-column-gap: 0px; */
+}
+
+#break-label {
+  margin-top: 20px;
+}
+
+#session-label {
+  margin-top: 20px;
+}
+
+#wrapper {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#break-decrement {
+  width: 50px;
+  height: 50px;
+  background-color: orange;
+}
+
+#session-decrement {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+}
+
+#counter {
+  width: 50px;
+  height: 50px;
+  background-color: blue;
 }
