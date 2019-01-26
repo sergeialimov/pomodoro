@@ -27,6 +27,9 @@ class App extends Component {
           </div>
           <div id="timer">
             <div id="timer-title">Session</div>
+            <p id="time">TIME</p>
+          </div>
+          <div id="buttons">
           </div>
         </div>
       </div>
