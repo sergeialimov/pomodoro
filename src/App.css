@@ -2,7 +2,7 @@
   height: 100vh;
   width: 100vw;
   display: grid;
-  background-color: gray;
+  background-color: lightgray;
   text-align: center;
 }
 
@@ -70,10 +70,16 @@ h1 {
 }
 
 #timer {
+  padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30px;
+  margin-top: 40px;
   width: 250px;
   height: 150px;
-  background-color: green;
+  background-color: gray;
+}
+
+#timer-title {
+  /* margin-top: 20px; */
+  font-size: 25px;
 }
