@@ -27,7 +27,7 @@ class App extends Component {
                   id="break-decrement"
                   type="image"
                   src={arrowDown}
-                  alt={'down'}
+                  alt={'break down'}
                   onClick={this.onClick}
                 />
                 <div id="counter">{this.state.break}</div>
@@ -36,7 +36,7 @@ class App extends Component {
                   id="break-increment"
                   type="image"
                   src={arrowUp}
-                  alt={'down'}
+                  alt={'break up'}
                   onClick={this.onClick}
                 />
               </div>
@@ -49,7 +49,7 @@ class App extends Component {
                   id="session-decrement"
                   type="image"
                   src={arrowDown}
-                  alt={'up'}
+                  alt={'session down'}
                   onClick={this.onClick}
                 />
                 <div id="counter">{this.state.session}</div>
@@ -58,7 +58,7 @@ class App extends Component {
                   id="session-increment"
                   type="image"
                   src={arrowUp}
-                  alt={'up'}
+                  alt={'session up'}
                   onClick={this.onClick}
                 />
               </div>
