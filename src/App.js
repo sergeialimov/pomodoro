@@ -21,7 +21,7 @@ class App extends Component {
               <div id="break-label">Break Length</div>
               <div id="wrapper">
                 <div id="break-decrement"></div>
-                <div id="counter"></div>
+                <div id="counter">{this.state.break}</div>
                 <div id="session-decrement"></div>
               </div>
             </div>
@@ -29,7 +29,7 @@ class App extends Component {
               <div id="session-label">Session Length</div>
               <div id="wrapper">
                 <div id="break-decrement"></div>
-                <div id="counter"></div>
+                <div id="counter">{this.state.session}</div>
                 <div id="session-decrement"></div>
               </div>
             </div>
