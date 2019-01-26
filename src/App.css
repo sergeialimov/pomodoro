@@ -2,7 +2,7 @@
   height: 100vh;
   width: 100vw;
   display: grid;
-  background-color: lightgray;
+  background-color: #1A423E;
   text-align: center;
 }
 
@@ -13,6 +13,7 @@
 h1 {
   font-size: 35px;
   margin-bottom: 40px;
+  color: #D2C7AB;
 }
 
 #abc {
@@ -36,6 +37,7 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  color: #D2C7AB;
 }
 
 #session-label {
@@ -43,6 +45,7 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  color: #D2C7AB;
 }
 
 #wrapper {
@@ -87,12 +90,14 @@ h1 {
 #timer-title {
   /* margin-top: 20px; */
   font-size: 25px;
+  color: #D2C7AB;
 }
 
 #time {
   margin-top: 10px;
   font-size: 50px;
   font-weight: 550;
+  color: #D2C7AB;
 }
 
 #buttons {
@@ -102,4 +107,5 @@ h1 {
   width: 100px;
   height: 50px;
   background: black;
+  color: #D2C7AB;
 }
