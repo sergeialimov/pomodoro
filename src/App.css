@@ -17,10 +17,15 @@ h1 {
 
 #abc {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   font-size: 23px;
   font-weight: 600;
   /* grid-column-gap: 0px; */
+}
+
+.break-session {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 #break-label {

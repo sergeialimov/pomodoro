@@ -8,17 +8,21 @@ class App extends Component {
         <div className="pomodoro">
           <h1>Pomodoro Clock</h1>
           <div id="abc">
-            <div id="break-label">Break Length</div>
-            <div id="wrapper">
-              <div id="break-decrement"></div>
-              <div id="counter"></div>
-              <div id="session-decrement"></div>
-            </div>
-            <div id="session-label">Session Length
+            <div className="break-session">
+              <div id="break-label">Break Length</div>
               <div id="wrapper">
                 <div id="break-decrement"></div>
                 <div id="counter"></div>
                 <div id="session-decrement"></div>
+              </div>
+            </div>
+            <div className="break-session">
+              <div id="session-label">Session Length
+                <div id="wrapper">
+                  <div id="break-decrement"></div>
+                  <div id="counter"></div>
+                  <div id="session-decrement"></div>
+                </div>
               </div>
             </div>
           </div>
