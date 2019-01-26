@@ -72,9 +72,7 @@ h1 {
 }
 
 #counter {
-  width: 30px;
-  height: 30px;
-  background-color: blue;
+  font-size: 30px;
 }
 
 #timer {
