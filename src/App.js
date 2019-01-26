@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      break: 0,
+      session: 0,
+      tillEnd: 0,
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -27,7 +36,7 @@ class App extends Component {
           </div>
           <div id="timer">
             <div id="timer-title">Session</div>
-            <p id="time">TIME</p>
+            <p id="time">{this.state.tillEnd}</p>
           </div>
           <div id="buttons">buttons</div>
         </div>
