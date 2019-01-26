@@ -17,9 +17,13 @@ h1 {
 
 #abc {
   display: grid;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
   grid-template-columns: 1fr 1fr;
   font-size: 23px;
   font-weight: 600;
+  margin-bottom: 50px;
 }
 
 .break-session {
