@@ -34,15 +34,19 @@ class App extends Component {
   }
 
   increaseSession() {
-    this.setState({
-      session: this.state.session + 1,
-    });
+    if (this.state.session + 1 <= 90) {
+      this.setState({
+        session: this.state.session + 1,
+      });
+    }
   }
 
   decreaseSession() {
-    this.setState({
-      session: this.state.session - 1,
-    });
+    if (this.state.session - 1 >= 0) {
+      this.setState({
+        session: this.state.session - 1,
+      });
+    }
   }
 
   render() {
