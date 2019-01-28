@@ -9,10 +9,8 @@ class App extends Component {
     this.state = {
       break: 0,
       session: 1,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
       paused: true,
+      date: new Date(),
     };
     this.increaseBreak = this.increaseBreak.bind(this);
     this.decreaseBreak = this.decreaseBreak.bind(this);
@@ -58,15 +56,14 @@ class App extends Component {
       this.setState({
         paused: false,
       });
-      const date = new Date();
       // date.setMinutes(date.getMinutes());
       // date.setMinutes(date.getMinutes() + this.state.session);
       setInterval(() => {
         if (!this.state.paused) {
-          date.setSeconds(date.getSeconds() - 1);
+          const localDate = this.state.date;
+          localDate.setSeconds(localDate.getSeconds() - 1)
           this.setState({
-            minutes: date.getMinutes(),
-            seconds: date.getSeconds(),
+            date: localDate,
           });
         }
       }, 1000);
@@ -78,6 +75,8 @@ class App extends Component {
   }
 
   render() {
+    const minutes = this.state.date.getMinutes();
+    const seconds = this.state.date.getSeconds();
     return (
       <div className="App">
         <div className="pomodoro">
@@ -130,9 +129,9 @@ class App extends Component {
           </div>
           <div id="timer">
             <div id="timer-title">Session</div>
-            <p id="time">{this.state.minutes}:{this.state.seconds}</p>
+            <p id="time">{minutes}:{seconds}</p>
           </div>
-          <div id="buttons" onClick={this.countTime}>start</div>
+          <div id="buttons" onClick={this.countTime}>start/pause</div>
         </div>
       </div>
     );
