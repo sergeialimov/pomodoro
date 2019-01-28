@@ -7,7 +7,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      num: 1000,
       break: 0,
       session: 1,
       paused: true,
@@ -22,10 +21,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+     const localDate = this.state.date;
      const intervalId = setInterval(() => {
-       if (this.state.paused) {
+       if (!this.state.paused) {
+         localDate.setSeconds(localDate.getSeconds() - 1);
          this.setState({
-           num: this.state.num - 1,
+           date: localDate,
          });
        }
      }, 1000);
@@ -123,8 +124,7 @@ class App extends Component {
   }
 
   render() {
-    const minutes = this.state.num;
-    // const minutes = this.state.date.getMinutes();
+    const minutes = this.state.date.getMinutes();
     const seconds = this.state.date.getSeconds();
     return (
       <div className="App">
