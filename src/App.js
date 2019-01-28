@@ -10,7 +10,14 @@ class App extends Component {
       break: 0,
       session: 0,
       tillEnd: 0,
-    }
+    };
+    this.increaseBreak = this.increaseBreak.bind(this);
+  }
+
+  increaseBreak() {
+    this.setState({
+      break: this.state.break + 1,
+    });
   }
 
   render() {
@@ -28,7 +35,7 @@ class App extends Component {
                   type="image"
                   src={arrowDown}
                   alt={'break down'}
-                  onClick={this.onClick}
+                  onClick={this.decreaseBreak}
                 />
                 <div id="counter">{this.state.break}</div>
                 <input
@@ -37,7 +44,7 @@ class App extends Component {
                   type="image"
                   src={arrowUp}
                   alt={'break up'}
-                  onClick={this.onClick}
+                  onClick={this.increaseBreak}
                 />
               </div>
             </div>
