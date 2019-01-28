@@ -15,6 +15,7 @@ class App extends Component {
     this.decreaseBreak = this.decreaseBreak.bind(this);
     this.increaseSession = this.increaseSession.bind(this);
     this.decreaseSession = this.decreaseSession.bind(this);
+    this.start = this.start.bind(this);
   }
 
   increaseBreak() {
@@ -47,6 +48,10 @@ class App extends Component {
         session: this.state.session - 1,
       });
     }
+  }
+
+  start() {
+
   }
 
   render() {
@@ -104,7 +109,7 @@ class App extends Component {
             <div id="timer-title">Session</div>
             <p id="time">{this.state.tillEnd}</p>
           </div>
-          <div id="buttons">buttons</div>
+          <div id="buttons" onClick={this.start}>start</div>
         </div>
       </div>
     );
