@@ -10,7 +10,7 @@ class App extends Component {
       break: 0,
       session: 1,
       paused: true,
-      date: new Date(),
+      date: new Date(new Date().setHours(0, 1, 0, 0)),
     };
     this.increaseBreak = this.increaseBreak.bind(this);
     this.decreaseBreak = this.decreaseBreak.bind(this);
@@ -37,8 +37,10 @@ class App extends Component {
 
   increaseSession() {
     if (this.state.session + 1 <= 60) {
+      const currentMinutes = this.state.date.getMinutes();
       this.setState({
         session: this.state.session + 1,
+        date: new Date(new Date().setHours(0, currentMinutes + 1, 0, 0)),
       });
     }
   }
@@ -56,12 +58,11 @@ class App extends Component {
       this.setState({
         paused: false,
       });
-      // date.setMinutes(date.getMinutes());
-      // date.setMinutes(date.getMinutes() + this.state.session);
+      const localDate = this.state.date;
+      localDate.setMinutes(localDate.getMinutes() + this.state.session);
       setInterval(() => {
         if (!this.state.paused) {
-          const localDate = this.state.date;
-          localDate.setSeconds(localDate.getSeconds() - 1)
+          localDate.setSeconds(localDate.getSeconds() - 1);
           this.setState({
             date: localDate,
           });
