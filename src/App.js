@@ -9,13 +9,16 @@ class App extends Component {
     this.state = {
       break: 0,
       session: 0,
-      tillEnd: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
     };
     this.increaseBreak = this.increaseBreak.bind(this);
     this.decreaseBreak = this.decreaseBreak.bind(this);
     this.increaseSession = this.increaseSession.bind(this);
     this.decreaseSession = this.decreaseSession.bind(this);
     this.start = this.start.bind(this);
+    this.countTime = this.countTime.bind(this);
   }
 
   increaseBreak() {
@@ -52,6 +55,31 @@ class App extends Component {
 
   start() {
 
+  }
+
+  countTime() {
+    var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+    var x = setInterval(() => {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var daysTillEnd = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hoursTillEnd = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutesTillEnd = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var secondsTillEnd = Math.floor((distance % (1000 * 60)) / 1000);
+
+      this.setState({
+        hours: hoursTillEnd,
+        minutes: minutesTillEnd,
+        seconds: secondsTillEnd,
+      })
+      // document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+      // + minutes + "m " + seconds + "s ";
+      if (distance < 0) {
+        clearInterval(x);
+        alert('done');
+        // document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
   }
 
   render() {
@@ -107,9 +135,9 @@ class App extends Component {
           </div>
           <div id="timer">
             <div id="timer-title">Session</div>
-            <p id="time">{this.state.tillEnd}</p>
+            <p id="time">{this.state.minutes}:{this.state.seconds}</p>
           </div>
-          <div id="buttons" onClick={this.start}>start</div>
+          <div id="buttons" onClick={this.countTime}>start</div>
         </div>
       </div>
     );
