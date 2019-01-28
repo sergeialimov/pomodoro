@@ -21,16 +21,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-     const localDate = this.state.date;
-     const intervalId = setInterval(() => {
-       if (!this.state.paused) {
-         localDate.setSeconds(localDate.getSeconds() - 1);
-         this.setState({
-           date: localDate,
-         });
-       }
-     }, 1000);
-     this.setState({ intervalId: intervalId });
+    const localDate = this.state.date;
+    const intervalId = setInterval(() => {
+    if (!this.state.paused) {
+      localDate.setSeconds(localDate.getSeconds() - 1);
+      this.setState({
+        date: localDate,
+      });
+     }
+   }, 1000);
+   this.setState({ intervalId: intervalId });
   }
 
   componentWillUnmount() {
@@ -41,50 +41,6 @@ class App extends Component {
     this.setState({
       paused: !this.state.paused,
     });
-  }
-
-  count = () => {
-    // if (this.state.paused) {
-    //   this.setState({
-    //     paused: false,
-    //   });
-      const localDate = this.state.date;
-      // localDate.setMinutes(localDate.getMinutes() + this.state.session);
-      // setInterval(() => {
-        if (!this.state.paused) {
-          localDate.setSeconds(localDate.getSeconds() - 1);
-          this.setState({
-            date: localDate,
-          });
-        }
-    //   });
-    // } else {
-    //   this.setState({
-    //     paused: true,
-    //   });
-    // }
-  }
-
-  countTime = () => {
-    if (this.state.paused) {
-      this.setState({
-        paused: false,
-      });
-      const localDate = this.state.date;
-      // localDate.setMinutes(localDate.getMinutes() + this.state.session);
-      setInterval(() => {
-        if (!this.state.paused) {
-          localDate.setSeconds(localDate.getSeconds() - 1);
-          this.setState({
-            date: localDate,
-          });
-        }
-      }, 1000);
-    } else {
-      this.setState({
-        paused: true,
-      });
-    }
   }
 
   increaseBreak() {
