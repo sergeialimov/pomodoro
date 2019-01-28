@@ -12,11 +12,32 @@ class App extends Component {
       tillEnd: 0,
     };
     this.increaseBreak = this.increaseBreak.bind(this);
+    this.decreaseBreak = this.decreaseBreak.bind(this);
+    this.increaseSession = this.increaseSession.bind(this);
+    this.decreaseSession = this.decreaseSession.bind(this);
   }
 
   increaseBreak() {
     this.setState({
       break: this.state.break + 1,
+    });
+  }
+
+  decreaseBreak() {
+    this.setState({
+      break: this.state.break - 1,
+    });
+  }
+
+  increaseSession() {
+    this.setState({
+      session: this.state.session + 1,
+    });
+  }
+
+  decreaseSession() {
+    this.setState({
+      session: this.state.session - 1,
     });
   }
 
@@ -57,7 +78,7 @@ class App extends Component {
                   type="image"
                   src={arrowDown}
                   alt={'session down'}
-                  onClick={this.onClick}
+                  onClick={this.decreaseSession}
                 />
                 <div id="counter">{this.state.session}</div>
                 <input
@@ -66,7 +87,7 @@ class App extends Component {
                   type="image"
                   src={arrowUp}
                   alt={'session up'}
-                  onClick={this.onClick}
+                  onClick={this.increaseSession}
                 />
               </div>
             </div>
