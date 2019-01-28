@@ -72,12 +72,9 @@ class App extends Component {
         minutes: minutesTillEnd,
         seconds: secondsTillEnd,
       })
-      // document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-      // + minutes + "m " + seconds + "s ";
       if (distance < 0) {
         clearInterval(x);
         alert('done');
-        // document.getElementById("demo").innerHTML = "EXPIRED";
       }
     }, 1000);
   }
@@ -135,7 +132,7 @@ class App extends Component {
           </div>
           <div id="timer">
             <div id="timer-title">Session</div>
-            <p id="time">{this.state.minutes}:{this.state.seconds}</p>
+            <p id="time">{this.state.hours}:{this.state.minutes}:{this.state.seconds}</p>
           </div>
           <div id="buttons" onClick={this.countTime}>start</div>
         </div>
