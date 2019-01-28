@@ -17,7 +17,7 @@ class App extends Component {
     this.increaseSession = this.increaseSession.bind(this);
     this.decreaseSession = this.decreaseSession.bind(this);
     this.countTime = this.countTime.bind(this);
-    this.test = this.test.bind(this);
+    this.startPause = this.startPause.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class App extends Component {
      clearInterval(this.state.intervalId);
   }
 
-  test() {
+  startPause() {
     this.setState({
       paused: !this.state.paused,
     });
@@ -180,7 +180,7 @@ class App extends Component {
             <div id="timer-title">Session</div>
             <p id="time">{minutes}:{seconds}</p>
           </div>
-          <div id="buttons" onClick={this.test}>start/pause</div>
+          <div id="buttons" onClick={this.startPause}>start/pause</div>
         </div>
       </div>
     );
