@@ -18,15 +18,19 @@ class App extends Component {
   }
 
   increaseBreak() {
-    this.setState({
-      break: this.state.break + 1,
-    });
+    if (this.state.break + 1 <= 10) {
+      this.setState({
+        break: this.state.break + 1,
+      });
+    }
   }
 
   decreaseBreak() {
-    this.setState({
-      break: this.state.break - 1,
-    });
+    if (this.state.break - 1 >= 0) {
+      this.setState({
+        break: this.state.break - 1,
+      });
+    }
   }
 
   increaseSession() {
