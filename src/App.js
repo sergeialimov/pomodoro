@@ -8,16 +8,16 @@ class App extends Component {
     super(props);
     this.state = {
       break: 0,
-      session: 0,
+      session: 1,
       hours: 0,
       minutes: 0,
       seconds: 0,
+      paused: true,
     };
     this.increaseBreak = this.increaseBreak.bind(this);
     this.decreaseBreak = this.decreaseBreak.bind(this);
     this.increaseSession = this.increaseSession.bind(this);
     this.decreaseSession = this.decreaseSession.bind(this);
-    this.start = this.start.bind(this);
     this.countTime = this.countTime.bind(this);
   }
 
@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   increaseSession() {
-    if (this.state.session + 1 <= 90) {
+    if (this.state.session + 1 <= 60) {
       this.setState({
         session: this.state.session + 1,
       });
@@ -53,30 +53,28 @@ class App extends Component {
     }
   }
 
-  start() {
-
-  }
-
-  countTime() {
-    var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
-    var x = setInterval(() => {
-      var now = new Date().getTime();
-      var distance = countDownDate - now;
-      var daysTillEnd = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hoursTillEnd = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutesTillEnd = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var secondsTillEnd = Math.floor((distance % (1000 * 60)) / 1000);
-
+  countTime = () => {
+    if (this.state.paused) {
       this.setState({
-        hours: hoursTillEnd,
-        minutes: minutesTillEnd,
-        seconds: secondsTillEnd,
-      })
-      if (distance < 0) {
-        clearInterval(x);
-        alert('done');
-      }
-    }, 1000);
+        paused: false,
+      });
+      const date = new Date();
+      // date.setMinutes(date.getMinutes());
+      // date.setMinutes(date.getMinutes() + this.state.session);
+      setInterval(() => {
+        if (!this.state.paused) {
+          date.setSeconds(date.getSeconds() - 1);
+          this.setState({
+            minutes: date.getMinutes(),
+            seconds: date.getSeconds(),
+          });
+        }
+      }, 1000);
+    } else {
+      this.setState({
+        paused: true,
+      });
+    }
   }
 
   render() {
@@ -132,7 +130,7 @@ class App extends Component {
           </div>
           <div id="timer">
             <div id="timer-title">Session</div>
-            <p id="time">{this.state.hours}:{this.state.minutes}:{this.state.seconds}</p>
+            <p id="time">{this.state.minutes}:{this.state.seconds}</p>
           </div>
           <div id="buttons" onClick={this.countTime}>start</div>
         </div>
