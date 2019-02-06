@@ -11,7 +11,7 @@ class App extends Component {
       break: 1,
       session: 1,
       paused: true,
-      brakePaused: true,
+      breakPaused: true,
       date: new Date(new Date().setHours(0, 0, 15, 0)),
     };
     this.increaseBreak = this.increaseBreak.bind(this);
@@ -20,7 +20,7 @@ class App extends Component {
     this.decreaseSession = this.decreaseSession.bind(this);
     this.startPause = this.startPause.bind(this);
     this.runSession = this.runSession.bind(this);
-    this.runBrake = this.runBrake.bind(this);
+    this.runBreak = this.runBreak.bind(this);
     this.refresh = this.refresh.bind(this);
   }
 
@@ -39,31 +39,32 @@ class App extends Component {
         if (localDate.getMinutes() === 0 && localDate.getSeconds() === 0) {
           this.setState({
             paused: true,
-            brakePaused: false,
+            breakPaused: false,
+            mode: 'break'
           });
           clearInterval(this.state.intervalId);
           this.refresh();
-          this.runBrake();
+          this.runBreak();
         }
       }
     }, 1000);
     this.setState({ intervalId: intervalId });
   }
 
-  runBrake() {
+  runBreak() {
     this.setState({
       date: new Date(new Date().setHours(0, 0, 12, 0)),
     });
     const localDate = this.state.date;
     const intervalId = setInterval(() => {
-      if (!this.state.brakePaused) {
+      if (!this.state.breakPaused) {
         localDate.setSeconds(localDate.getSeconds() - 1);
         this.setState({
           date: localDate,
         });
         if (localDate.getMinutes() === 0 && localDate.getSeconds() === 0) {
           this.setState({
-            brakePaused: true,
+            breakPaused: true,
             paused: false,
           });
           clearInterval(this.state.intervalId);
@@ -90,7 +91,7 @@ class App extends Component {
       break: 1,
       session: 1,
       paused: true,
-      brakePaused: true,
+      breakPaused: true,
       date: new Date(new Date().setHours(0, 0, 15, 0)),
     });
   }
@@ -132,7 +133,7 @@ class App extends Component {
   render() {
     const minutes = this.state.date.getMinutes();
     const seconds = this.state.date.getSeconds();
-    const title = this.state.mode === 'session' ? 'Session' : 'Brake';
+    const title = this.state.mode === 'session' ? 'Session' : 'Break';
     return (
       <div className="App">
         <div className="pomodoro">
