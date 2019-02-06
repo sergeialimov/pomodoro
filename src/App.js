@@ -20,6 +20,7 @@ class App extends Component {
     this.startPause = this.startPause.bind(this);
     this.runSession = this.runSession.bind(this);
     this.runBrake = this.runBrake.bind(this);
+    this.refresh = this.refresh.bind(this);
   }
 
   componentWillUnmount() {
@@ -78,6 +79,16 @@ class App extends Component {
     clearInterval(this.state.intervalId);
     this.setState({
       paused: !this.state.paused,
+    });
+  }
+
+  refresh() {
+    this.setState({
+      break: 1,
+      session: 1,
+      paused: true,
+      brakePaused: true,
+      date: new Date(new Date().setHours(0, 0, 15, 0)),
     });
   }
 
