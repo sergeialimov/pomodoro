@@ -7,10 +7,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      break: 0,
+      break: 1,
       session: 1,
       paused: true,
-      date: new Date(new Date().setHours(0, 1, 0, 0)),
+      brakePaused: true,
+      date: new Date(new Date().setHours(0, 0, 15, 0)),
     };
     this.increaseBreak = this.increaseBreak.bind(this);
     this.decreaseBreak = this.decreaseBreak.bind(this);
@@ -18,6 +19,7 @@ class App extends Component {
     this.decreaseSession = this.decreaseSession.bind(this);
     this.startPause = this.startPause.bind(this);
     this.runSession = this.runSession.bind(this);
+    this.runBrake = this.runBrake.bind(this);
   }
 
   componentWillUnmount() {
@@ -35,11 +37,38 @@ class App extends Component {
         if (localDate.getMinutes() === 0 && localDate.getSeconds() === 0) {
           this.setState({
             paused: true,
+            brakePaused: false,
           });
+          clearInterval(this.state.intervalId);
+          this.runBrake();
         }
       }
     }, 1000);
-  this.setState({ intervalId: intervalId });
+    this.setState({ intervalId: intervalId });
+  }
+
+  runBrake() {
+    this.setState({
+      date: new Date(new Date().setHours(0, 0, 12, 0)),
+    });
+    const localDate = this.state.date;
+    const intervalId = setInterval(() => {
+      if (!this.state.brakePaused) {
+        localDate.setSeconds(localDate.getSeconds() - 1);
+        this.setState({
+          date: localDate,
+        });
+        if (localDate.getMinutes() === 0 && localDate.getSeconds() === 0) {
+          this.setState({
+            brakePaused: true,
+            paused: false,
+          });
+          clearInterval(this.state.intervalId);
+          this.runSession();
+        }
+      }
+    }, 1000);
+    this.setState({ intervalId: intervalId });
   }
 
   startPause() {
