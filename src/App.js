@@ -9,10 +9,9 @@ class App extends Component {
     this.state = {
       mode: 'session',
       break: 1,
-      session: 1,
       sessionPaused: true,
       breakPaused: true,
-      sessionTime: new Date(new Date().setHours(0, 0, 10, 0)),
+      session: new Date(new Date().setHours(0, 0, 10, 0)),
       breakTime: new Date(new Date().setHours(0, 0, 7, 0)),
     };
     this.increaseBreak = this.increaseBreak.bind(this);
@@ -30,12 +29,12 @@ class App extends Component {
   }
 
   runSession() {
-    const localTime = this.state.sessionTime;
+    const localTime = this.state.session;
     const intervalId = setInterval(() => {
       if (!this.state.sessionPaused) {
         localTime.setSeconds(localTime.getSeconds() - 1);
         this.setState({
-          sessionTime: localTime,
+          session: localTime,
         });
         if (localTime.getMinutes() === 0 && localTime.getSeconds() === 0) {
           this.setState({
@@ -57,9 +56,6 @@ class App extends Component {
   }
 
   runBreak() {
-    this.setState({
-      breakTime: new Date(new Date().setHours(0, 0, 7, 0)),
-    });
     const localTime = this.state.breakTime;
     const intervalId = setInterval(() => {
       if (!this.state.breakPaused) {
@@ -99,29 +95,29 @@ class App extends Component {
   refresh() {
     this.setState({
       break: 1,
-      session: 1,
       mode: 'session',
       sessionPaused: true,
       breakPaused: true,
-      sessionTime: new Date(new Date().setHours(0, 0, 10, 0)),
+      session: new Date(new Date().setHours(0, 0, 10, 0)),
       breakTime: new Date(new Date().setHours(0, 0, 7, 0)),
     });
   }
 
   increaseSession() {
-    if (this.state.sessionPaused && this.state.session <= 59) {
+    const minutes = this.state.session.getMinutes();
+    if (this.state.sessionPaused && minutes <= 59) {
       this.setState({
         session: this.state.session + 1,
-        time: new Date(new Date().setHours(0, this.state.session + 1, 0, 0)),
+        session: new Date(new Date().setHours(0, minutes + 1, 0, 0)),
       });
     }
   }
 
   decreaseSession() {
-    if (this.state.sessionPaused && this.state.session >= 1) {
+    const minutes = this.state.session.getMinutes();
+    if (this.state.sessionPaused && minutes >= 1) {
       this.setState({
-        session: this.state.session - 1,
-        time: new Date(new Date().setHours(0, this.state.session - 1, 0, 0)),
+        session: new Date(new Date().setHours(0, minutes - 1, 0, 0)),
       });
     }
   }
@@ -129,7 +125,7 @@ class App extends Component {
   increaseBreak() {
     if (this.state.sessionPaused && this.state.break <= 9) {
       this.setState({
-        break: this.state.break + 1,
+        breakTime: this.state.break + 1,
       });
     }
   }
@@ -143,7 +139,7 @@ class App extends Component {
   }
 
   render() {
-    const time = this.state.mode === 'session' ? this.state.sessionTime : this.state.breakTime;
+    const time = this.state.mode === 'session' ? this.state.session : this.state.breakTime;
     const title = this.state.mode === 'session' ? 'Session' : 'Break';
     return (
       <div className="App">
