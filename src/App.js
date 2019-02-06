@@ -183,7 +183,10 @@ class App extends Component {
             <div id="timer-title">Session</div>
             <p id="time">{minutes}:{seconds}</p>
           </div>
-          <div id="buttons" onClick={this.startPause}>start/pause</div>
+          <div id="buttons">
+            <div id="playPause" onClick={this.startPause}>start/pause</div>
+            <div id="refresh" onClick={this.refresh}>refresh</div>
+          </div>
         </div>
       </div>
     );
