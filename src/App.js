@@ -7,11 +7,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: 'session',
-      sessionPaused: true,
-      breakPaused: true,
-      session: new Date(new Date().setHours(0, 0, 10, 0)),
       break: new Date(new Date().setHours(0, 0, 7, 0)),
+      breakPaused: true,
+      mode: 'session',
+      session: new Date(new Date().setHours(0, 0, 10, 0)),
+      sessionCounter: 1,
+      sessionPaused: true,
     };
     this.increaseBreak = this.increaseBreak.bind(this);
     this.decreaseBreak = this.decreaseBreak.bind(this);
@@ -104,6 +105,7 @@ class App extends Component {
       sessionPaused: true,
       breakPaused: true,
       session: new Date(new Date().setHours(0, 0, 10, 0)),
+      sessionCounter: 1,
       break: new Date(new Date().setHours(0, 0, 7, 0)),
     });
   }
@@ -113,6 +115,7 @@ class App extends Component {
     if (this.state.sessionPaused && minutes <= 59) {
       this.setState({
         session: new Date(new Date().setHours(0, minutes + 1, 0, 0)),
+        sessionCounter: this.state.sessionCounter + 1,
       });
     }
   }
@@ -122,6 +125,7 @@ class App extends Component {
     if (this.state.sessionPaused && minutes >= 1) {
       this.setState({
         session: new Date(new Date().setHours(0, minutes - 1, 0, 0)),
+        sessionCounter: this.state.sessionCounter - 1,
       });
     }
   }
@@ -185,7 +189,7 @@ class App extends Component {
                   alt={'session down'}
                   onClick={this.decreaseSession}
                 />
-                <div id="counter">{this.state.session.getMinutes()}</div>
+                <div id="counter">{this.state.sessionCounter}</div>
                 <input
                   className="arrows"
                   id="session-increment"
