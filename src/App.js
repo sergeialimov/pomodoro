@@ -17,18 +17,18 @@ class App extends Component {
     this.increaseSession = this.increaseSession.bind(this);
     this.decreaseSession = this.decreaseSession.bind(this);
     this.startPause = this.startPause.bind(this);
-    this.wrapper = this.wrapper.bind(this);
+    this.launchTimer = this.launchTimer.bind(this);
   }
 
   componentDidMount() {
-    this.wrapper();
+    this.launchTimer();
   }
 
   componentWillUnmount() {
      clearInterval(this.state.intervalId);
   }
 
-  wrapper() {
+  launchTimer() {
     const localDate = this.state.date;
     const intervalId = setInterval(() => {
     if (!this.state.paused) {
@@ -48,7 +48,7 @@ class App extends Component {
 
     if (!this.state.paused) {
       clearInterval(this.state.intervalId);
-      this.wrapper();
+      this.launchTimer();
     }
   }
 
