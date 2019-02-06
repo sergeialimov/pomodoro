@@ -30,6 +30,7 @@ class App extends Component {
 
   launchTimer() {
     const localDate = this.state.date;
+    console.log('localDate', localDate);
     const intervalId = setInterval(() => {
     if (!this.state.paused) {
       localDate.setSeconds(localDate.getSeconds() - 1);
@@ -52,6 +53,25 @@ class App extends Component {
     }
   }
 
+  increaseSession() {
+    if (this.state.session <= 59) {
+      this.setState({
+        session: this.state.session + 1,
+        date: new Date(new Date().setHours(0, this.state.session + 1, 0, 0)),
+      });
+    }
+  }
+
+  decreaseSession() {
+    if (this.state.session >= 1) {
+      const currentMinutes = this.state.date.getMinutes();
+      this.setState({
+        session: this.state.session - 1,
+        date: new Date(new Date().setHours(0, currentMinutes - 1, 0, 0)),
+      });
+    }
+  }
+
   increaseBreak() {
     if (this.state.break <= 9) {
       this.setState({
@@ -64,26 +84,6 @@ class App extends Component {
     if (this.state.break >= 1) {
       this.setState({
         break: this.state.break - 1,
-      });
-    }
-  }
-
-  increaseSession() {
-    if (this.state.session <= 59) {
-      const currentMinutes = this.state.date.getMinutes();
-      this.setState({
-        session: this.state.session + 1,
-        date: new Date(new Date().setHours(0, currentMinutes + 1, 0, 0)),
-      });
-    }
-  }
-
-  decreaseSession() {
-    if (this.state.session >= 1) {
-      const currentMinutes = this.state.date.getMinutes();
-      this.setState({
-        session: this.state.session - 1,
-        date: new Date(new Date().setHours(0, currentMinutes - 1, 0, 0)),
       });
     }
   }
