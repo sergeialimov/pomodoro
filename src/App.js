@@ -7,6 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      mode: 'session',
       break: 1,
       session: 1,
       paused: true,
@@ -41,6 +42,7 @@ class App extends Component {
             brakePaused: false,
           });
           clearInterval(this.state.intervalId);
+          this.refresh();
           this.runBrake();
         }
       }
@@ -65,6 +67,7 @@ class App extends Component {
             paused: false,
           });
           clearInterval(this.state.intervalId);
+          this.refresh();
           this.runSession();
         }
       }
@@ -129,6 +132,7 @@ class App extends Component {
   render() {
     const minutes = this.state.date.getMinutes();
     const seconds = this.state.date.getSeconds();
+    const title = this.state.mode === 'session' ? 'Session' : 'Brake';
     return (
       <div className="App">
         <div className="pomodoro">
@@ -180,7 +184,7 @@ class App extends Component {
             </div>
           </div>
           <div id="timer">
-            <div id="timer-title">Session</div>
+            <div id="timer-title">{title}</div>
             <p id="time">{minutes}:{seconds}</p>
           </div>
           <div id="buttons">
