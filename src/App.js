@@ -70,8 +70,6 @@ class App extends Component {
           clearInterval(this.state.intervalId);
           this.refresh();
           this.setState({
-            breakPaused: true,
-            mode: 'session',
             sessionPaused: false,
           });
           this.runSession();
@@ -82,13 +80,22 @@ class App extends Component {
   }
 
   startPause() {
-    if (this.state.sessionPaused) {
-      this.runSession();
-    }
     clearInterval(this.state.intervalId);
-    this.setState({
-      sessionPaused: !this.state.sessionPaused,
-    });
+    if (this.state.mode === 'session') {
+      if (this.state.sessionPaused) {
+        this.runSession();
+      }
+      this.setState({
+        sessionPaused: !this.state.sessionPaused,
+      });
+    } else {
+      if (this.state.breakPaused) {
+        this.runBreak();
+      }
+      this.setState({
+        breakPaused: !this.state.breakPaused,
+      });
+    }
   }
 
   refresh() {
