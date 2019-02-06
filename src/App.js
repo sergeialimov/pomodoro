@@ -48,7 +48,7 @@ class App extends Component {
   }
 
   increaseSession() {
-    if (this.state.session <= 59) {
+    if (this.state.paused && this.state.session <= 59) {
       this.setState({
         session: this.state.session + 1,
         date: new Date(new Date().setHours(0, this.state.session + 1, 0, 0)),
@@ -57,7 +57,7 @@ class App extends Component {
   }
 
   decreaseSession() {
-    if (this.state.session >= 1) {
+    if (this.state.paused && this.state.session >= 1) {
       this.setState({
         session: this.state.session - 1,
         date: new Date(new Date().setHours(0, this.state.session - 1, 0, 0)),
@@ -66,7 +66,7 @@ class App extends Component {
   }
 
   increaseBreak() {
-    if (this.state.break <= 9) {
+    if (this.state.paused && this.state.break <= 9) {
       this.setState({
         break: this.state.break + 1,
       });
@@ -74,7 +74,7 @@ class App extends Component {
   }
 
   decreaseBreak() {
-    if (this.state.break >= 1) {
+    if (this.state.paused && this.state.break >= 1) {
       this.setState({
         break: this.state.break - 1,
       });
