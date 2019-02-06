@@ -79,7 +79,7 @@ class App extends Component {
   }
 
   decreaseSession() {
-    if (this.state.session - 1 >= 0) {
+    if (this.state.session >= 1) {
       const currentMinutes = this.state.date.getMinutes();
       this.setState({
         session: this.state.session - 1,
