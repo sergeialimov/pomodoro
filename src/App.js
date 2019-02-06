@@ -17,14 +17,14 @@ class App extends Component {
     this.increaseSession = this.increaseSession.bind(this);
     this.decreaseSession = this.decreaseSession.bind(this);
     this.startPause = this.startPause.bind(this);
-    this.launchTimer = this.launchTimer.bind(this);
+    this.runSession = this.runSession.bind(this);
   }
 
   componentWillUnmount() {
      clearInterval(this.state.intervalId);
   }
 
-  launchTimer() {
+  runSession() {
     const localDate = this.state.date;
     const intervalId = setInterval(() => {
       if (!this.state.paused) {
@@ -44,7 +44,7 @@ class App extends Component {
 
   startPause() {
     if (this.state.paused) {
-      this.launchTimer();
+      this.runSession();
     }
     clearInterval(this.state.intervalId);
     this.setState({
