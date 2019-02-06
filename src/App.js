@@ -45,6 +45,7 @@ class App extends Component {
     this.setState({
       paused: !this.state.paused,
     });
+
     if (!this.state.paused) {
       clearInterval(this.state.intervalId);
       this.wrapper();
@@ -68,7 +69,7 @@ class App extends Component {
   }
 
   increaseSession() {
-    if (this.state.session + 1 <= 60) {
+    if (this.state.session <= 59) {
       const currentMinutes = this.state.date.getMinutes();
       this.setState({
         session: this.state.session + 1,
