@@ -27,14 +27,19 @@ class App extends Component {
   launchTimer() {
     const localDate = this.state.date;
     const intervalId = setInterval(() => {
-    if (!this.state.paused) {
-      localDate.setSeconds(localDate.getSeconds() - 1);
-      this.setState({
-        date: localDate,
-      });
-     }
-   }, 1000);
-   this.setState({ intervalId: intervalId });
+      if (!this.state.paused) {
+        localDate.setSeconds(localDate.getSeconds() - 1);
+        this.setState({
+          date: localDate,
+        });
+        if (localDate.getMinutes() === 0 && localDate.getSeconds() === 0) {
+          this.setState({
+            paused: true,
+          });
+        }
+      }
+    }, 1000);
+  this.setState({ intervalId: intervalId });
   }
 
   startPause() {
