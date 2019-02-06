@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   increaseBreak() {
-    if (this.state.break + 1 <= 10) {
+    if (this.state.break <= 9) {
       this.setState({
         break: this.state.break + 1,
       });
@@ -61,7 +61,7 @@ class App extends Component {
   }
 
   decreaseBreak() {
-    if (this.state.break - 1 >= 0) {
+    if (this.state.break >= 1) {
       this.setState({
         break: this.state.break - 1,
       });
