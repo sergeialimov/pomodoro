@@ -144,8 +144,6 @@ class App extends Component {
 
   render() {
     const time = this.state.mode === 'session' ? this.state.sessionTime : this.state.breakTime;
-    const minutes = time.getMinutes();
-    const seconds = time.getSeconds();
     const title = this.state.mode === 'session' ? 'Session' : 'Break';
     return (
       <div className="App">
@@ -199,7 +197,7 @@ class App extends Component {
           </div>
           <div id="timer">
             <div id="timer-title">{title}</div>
-            <p id="time">{minutes}:{seconds}</p>
+            <p id="time">{time.getMinutes()}:{time.getSeconds()}</p>
           </div>
           <div id="buttons">
             <div id="playPause" onClick={this.startPause}>start/pause</div>
