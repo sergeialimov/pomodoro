@@ -25,6 +25,14 @@ class App extends Component {
     this.refresh = this.refresh.bind(this);
   }
 
+  // autotests for FreeCodeCamp
+  componentDidMount() {
+    const script = document.createElement("script");
+    script.src = "https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }
+
   componentWillUnmount() {
      clearInterval(this.state.intervalId);
   }
