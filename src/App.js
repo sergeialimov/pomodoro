@@ -30,14 +30,14 @@ class App extends Component {
   }
 
   runSession() {
-    const localTime = this.state.session;
+    const time = this.state.session;
     const intervalId = setInterval(() => {
-      if (!this.state.sessionPaused && localTime.getMinutes() > 0) {
-        localTime.setSeconds(localTime.getSeconds() - 1);
+      if (!this.state.sessionPaused && time.getMinutes() > 0 || time.getSeconds() > 0) {
+        time.setSeconds(time.getSeconds() - 1);
         this.setState({
-          session: localTime,
+          session: time,
         });
-        if (localTime.getMinutes() === 0 && localTime.getSeconds() === 0) {
+        if (time.getMinutes() === 0 && time.getSeconds() === 0) {
           this.setState({
             sessionPaused: true,
             breakPaused: false,
@@ -57,14 +57,14 @@ class App extends Component {
   }
 
   runBreak() {
-    const localTime = this.state.break;
+    const time = this.state.break;
     const intervalId = setInterval(() => {
       if (!this.state.breakPaused) {
-        localTime.setSeconds(localTime.getSeconds() - 1);
+        time.setSeconds(time.getSeconds() - 1);
         this.setState({
-          break: localTime,
+          break: time,
         });
-        if (localTime.getMinutes() === 0 && localTime.getSeconds() === 0) {
+        if (time.getMinutes() === 0 && time.getSeconds() === 0) {
           this.setState({
             breakPaused: true,
             sessionPaused: false,
