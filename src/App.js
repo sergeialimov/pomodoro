@@ -125,7 +125,7 @@ class App extends Component {
     const hours = this.state.session.getHours();
     if (this.state.sessionPaused && minutes < 60 && hours === 0) {
       this.setState({
-        session: new Date(new Date().setHours(0, this.state.session.getMinutes() + 1, 0, 0)),
+        session: new Date(new Date().setHours(0, this.state.sessionCounter + 1, 0, 0)),
         sessionCounter: this.state.sessionCounter + 1,
       });
     }
@@ -135,7 +135,7 @@ class App extends Component {
     const minutes = this.state.session.getMinutes();
     if (this.state.sessionPaused && minutes > 1) {
       this.setState({
-        session: new Date(new Date().setHours(0, minutes - 1, 0, 0)),
+        session: new Date(new Date().setHours(0, this.state.sessionCounter - 1, 0, 0)),
         sessionCounter: this.state.sessionCounter - 1,
       });
     }
@@ -146,7 +146,7 @@ class App extends Component {
     const hours = this.state.break.getHours();
     if (this.state.sessionPaused && minutes < 60  && hours === 0) {
       this.setState({
-        break: new Date(new Date().setHours(0, minutes + 1, 0, 0)),
+        break: new Date(new Date().setHours(0, this.state.breakCounter + 1, 0, 0)),
         breakCounter: this.state.breakCounter + 1,
       });
     }
@@ -156,7 +156,7 @@ class App extends Component {
     const minutes = this.state.break.getMinutes();
     if (this.state.sessionPaused && minutes > 1) {
       this.setState({
-        break: new Date(new Date().setHours(0, minutes - 1, 0, 0)),
+        break: new Date(new Date().setHours(0, this.state.breakCounter - 1, 0, 0)),
         breakCounter: this.state.breakCounter - 1,
       });
     }
@@ -164,7 +164,7 @@ class App extends Component {
 
   render() {
     const time = this.state.mode === 'session' ? this.state.session : this.state.break;
-    const title = this.state.mode === 'session' ? 'Session' : 'Break';
+    const timerLabel = this.state.mode === 'session' ? 'Session' : 'Break';
     return (
       <div className="App">
         <div className="pomodoro">
@@ -216,7 +216,7 @@ class App extends Component {
             </div>
           </div>
           <div id="timer">
-            <div id="timer-title">{title}</div>
+            <div id="timer-label">{timerLabel}</div>
             <p id="time">{time.getMinutes()}:{time.getSeconds()}</p>
           </div>
           <div id="buttons">
