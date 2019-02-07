@@ -32,7 +32,7 @@ class App extends Component {
   runSession() {
     const localTime = this.state.session;
     const intervalId = setInterval(() => {
-      if (!this.state.sessionPaused) {
+      if (!this.state.sessionPaused && localTime.getMinutes() > 0) {
         localTime.setSeconds(localTime.getSeconds() - 1);
         this.setState({
           session: localTime,
