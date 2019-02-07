@@ -110,7 +110,7 @@ h1 {
   height: 50px;
 }
 
-#playPause {
+#start_stop {
   width: 130px;
   height: 50px;
   background: black;
@@ -119,7 +119,7 @@ h1 {
   margin-right: 5px;
 }
 
-#refresh {
+#reset {
   width: 80px;
   height: 50px;
   background: black;

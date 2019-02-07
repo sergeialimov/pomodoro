@@ -7,12 +7,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      break: new Date(new Date().setHours(0, 1, 0, 0)),
-      breakCounter: 1,
+      break: new Date(new Date().setHours(0, 5, 0, 0)),
+      breakCounter: 5,
       breakPaused: true,
       mode: 'session',
-      session: new Date(new Date().setHours(0, 1, 0, 0)),
-      sessionCounter: 1,
+      session: new Date(new Date().setHours(0, 25, 0, 0)),
+      sessionCounter: 25,
       sessionPaused: true,
     };
     this.increaseBreak = this.increaseBreak.bind(this);
@@ -113,9 +113,10 @@ class App extends Component {
       mode: 'session',
       sessionPaused: true,
       breakPaused: true,
-      session: new Date(new Date().setHours(0, 1, 0, 0)),
-      sessionCounter: 1,
-      break: new Date(new Date().setHours(0, 1, 0, 0)),
+      session: new Date(new Date().setHours(0, 25, 0, 0)),
+      sessionCounter: 25,
+      break: new Date(new Date().setHours(0, 5, 0, 0)),
+      breakCounter: 5,
     });
   }
 
@@ -178,7 +179,7 @@ class App extends Component {
                   alt={'break down'}
                   onClick={this.decreaseBreak}
                 />
-                <div id="counter">{this.state.breakCounter}</div>
+                <div id="break-length">{this.state.breakCounter}</div>
                 <input
                   className="arrows"
                   id="break-increment"
@@ -200,7 +201,7 @@ class App extends Component {
                   alt={'session down'}
                   onClick={this.decreaseSession}
                 />
-                <div id="counter">{this.state.sessionCounter}</div>
+                <div id="session-length">{this.state.sessionCounter}</div>
                 <input
                   className="arrows"
                   id="session-increment"
@@ -217,8 +218,8 @@ class App extends Component {
             <p id="time">{time.getMinutes()}:{time.getSeconds()}</p>
           </div>
           <div id="buttons">
-            <div id="playPause" onClick={this.startPause}>start/pause</div>
-            <div id="refresh" onClick={this.refresh}>refresh</div>
+            <div id="start_stop" onClick={this.startPause}>start/pause</div>
+            <div id="reset" onClick={this.refresh}>refresh</div>
           </div>
         </div>
       </div>
