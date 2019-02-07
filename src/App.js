@@ -7,10 +7,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      break: new Date(new Date().setHours(0, 0, 7, 0)),
+      break: new Date(new Date().setHours(0, 1, 7, 0)),
+      breakCounter: 1,
       breakPaused: true,
       mode: 'session',
-      session: new Date(new Date().setHours(0, 0, 10, 0)),
+      session: new Date(new Date().setHours(0, 1, 10, 0)),
       sessionCounter: 1,
       sessionPaused: true,
     };
@@ -135,6 +136,7 @@ class App extends Component {
     if (this.state.sessionPaused && minutes <= 9) {
       this.setState({
         break: new Date(new Date().setHours(0, minutes + 1, 0, 0)),
+        breakCounter: this.state.breakCounter + 1,
       });
     }
   }
@@ -144,6 +146,7 @@ class App extends Component {
     if (this.state.sessionPaused && minutes >= 1) {
       this.setState({
         break: new Date(new Date().setHours(0, minutes - 1, 0, 0)),
+        breakCounter: this.state.breakCounter - 1,
       });
     }
   }
@@ -167,7 +170,7 @@ class App extends Component {
                   alt={'break down'}
                   onClick={this.decreaseBreak}
                 />
-                <div id="counter">{this.state.break.getMinutes()}</div>
+                <div id="counter">{this.state.breakCounter}</div>
                 <input
                   className="arrows"
                   id="break-increment"
