@@ -122,9 +122,10 @@ class App extends Component {
 
   increaseSession() {
     const minutes = this.state.session.getMinutes();
-    if (this.state.sessionPaused && minutes <= 59) {
+    const hours = this.state.session.getHours();
+    if (this.state.sessionPaused && minutes < 60 && hours === 0) {
       this.setState({
-        session: new Date(new Date().setHours(0, minutes + 1, 0, 0)),
+        session: new Date(new Date().setHours(0, this.state.session.getMinutes() + 1, 0, 0)),
         sessionCounter: this.state.sessionCounter + 1,
       });
     }
@@ -132,7 +133,7 @@ class App extends Component {
 
   decreaseSession() {
     const minutes = this.state.session.getMinutes();
-    if (this.state.sessionPaused && minutes >= 1) {
+    if (this.state.sessionPaused && minutes > 1) {
       this.setState({
         session: new Date(new Date().setHours(0, minutes - 1, 0, 0)),
         sessionCounter: this.state.sessionCounter - 1,
@@ -142,7 +143,8 @@ class App extends Component {
 
   increaseBreak() {
     const minutes = this.state.break.getMinutes();
-    if (this.state.sessionPaused && minutes <= 9) {
+    const hours = this.state.break.getHours();
+    if (this.state.sessionPaused && minutes < 60  && hours === 0) {
       this.setState({
         break: new Date(new Date().setHours(0, minutes + 1, 0, 0)),
         breakCounter: this.state.breakCounter + 1,
@@ -152,7 +154,7 @@ class App extends Component {
 
   decreaseBreak() {
     const minutes = this.state.break.getMinutes();
-    if (this.state.sessionPaused && minutes >= 1) {
+    if (this.state.sessionPaused && minutes > 1) {
       this.setState({
         break: new Date(new Date().setHours(0, minutes - 1, 0, 0)),
         breakCounter: this.state.breakCounter - 1,
