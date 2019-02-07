@@ -7,11 +7,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      break: new Date(new Date().setHours(0, 1, 7, 0)),
+      break: new Date(new Date().setHours(0, 1, 0, 0)),
       breakCounter: 1,
       breakPaused: true,
       mode: 'session',
-      session: new Date(new Date().setHours(0, 1, 10, 0)),
+      session: new Date(new Date().setHours(0, 1, 0, 0)),
       sessionCounter: 1,
       sessionPaused: true,
     };
@@ -32,7 +32,7 @@ class App extends Component {
   runSession() {
     const time = this.state.session;
     const intervalId = setInterval(() => {
-      if (!this.state.sessionPaused && time.getMinutes() > 0 || time.getSeconds() > 0) {
+      if (!this.state.sessionPaused && (time.getMinutes() > 0 || time.getSeconds() > 0)) {
         time.setSeconds(time.getSeconds() - 1);
         this.setState({
           session: time,
@@ -105,9 +105,9 @@ class App extends Component {
       mode: 'session',
       sessionPaused: true,
       breakPaused: true,
-      session: new Date(new Date().setHours(0, 0, 10, 0)),
+      session: new Date(new Date().setHours(0, 1, 0, 0)),
       sessionCounter: 1,
-      break: new Date(new Date().setHours(0, 0, 7, 0)),
+      break: new Date(new Date().setHours(0, 1, 0, 0)),
     });
   }
 
