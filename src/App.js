@@ -169,6 +169,10 @@ class App extends Component {
     if (seconds < 10) {
       seconds = "0" + seconds
     };
+    let minutes = time.getMinutes();
+    if (minutes < 10) {
+      minutes = "0" + minutes
+    };
 
     return (
       <div className="App">
@@ -222,7 +226,7 @@ class App extends Component {
           </div>
           <div id="timer">
             <div id="timer-label">{timerLabel}</div>
-            <p id="time-left">{time.getMinutes()}:{seconds}</p>
+            <p id="time-left">{minutes}:{seconds}</p>
           </div>
           <div id="buttons">
             <div id="start_stop" onClick={this.startPause}>start/pause</div>
