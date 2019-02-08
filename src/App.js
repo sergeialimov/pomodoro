@@ -165,6 +165,11 @@ class App extends Component {
   render() {
     const time = this.state.mode === 'session' ? this.state.session : this.state.break;
     const timerLabel = this.state.mode === 'session' ? 'Session' : 'Break';
+    let seconds = time.getSeconds();
+    if (seconds < 10) {
+      seconds = "0" + seconds
+    };
+
     return (
       <div className="App">
         <div className="pomodoro">
@@ -217,7 +222,7 @@ class App extends Component {
           </div>
           <div id="timer">
             <div id="timer-label">{timerLabel}</div>
-            <p id="time">{time.getMinutes()}:{time.getSeconds()}</p>
+            <p id="time-left">{time.getMinutes()}:{seconds}</p>
           </div>
           <div id="buttons">
             <div id="start_stop" onClick={this.startPause}>start/pause</div>
