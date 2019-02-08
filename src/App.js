@@ -45,7 +45,9 @@ class App extends Component {
         this.setState({
           session: time,
         });
-        if (time.getMinutes() === 0 && time.getSeconds() === 0) {
+      }
+      if (time.getMinutes() === 0 && time.getSeconds() === 0) {
+        setTimeout(() => {
           this.setState({
             sessionPaused: true,
             breakPaused: false,
@@ -58,7 +60,7 @@ class App extends Component {
             mode: 'break',
           });
           this.runBreak();
-        }
+        }, 1000);
       }
     }, 1000);
     this.setState({ intervalId: intervalId });
@@ -73,16 +75,18 @@ class App extends Component {
           break: time,
         });
         if (time.getMinutes() === 0 && time.getSeconds() === 0) {
-          this.setState({
-            breakPaused: true,
-            sessionPaused: false,
-          });
-          clearInterval(this.state.intervalId);
-          this.refresh();
-          this.setState({
-            sessionPaused: false,
-          });
-          this.runSession();
+          setTimeout(() => {
+            this.setState({
+              breakPaused: true,
+              sessionPaused: false,
+            });
+            clearInterval(this.state.intervalId);
+            this.refresh();
+            this.setState({
+              sessionPaused: false,
+            });
+            this.runSession();
+          }, 1000);
         }
       }
     }, 1000);
