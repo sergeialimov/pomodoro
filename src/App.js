@@ -51,7 +51,7 @@ class App extends Component {
           clearInterval(this.state.intervalId);
           this.setState({
             sessionPaused: true,
-            session: this.state.sessionCounter,
+            session: new Date(new Date().setHours(0, this.state.sessionCounter, 0, 0)),
             breakPaused: false,
             mode: 'break',
           });
@@ -74,7 +74,7 @@ class App extends Component {
           setTimeout(() => {
             clearInterval(this.state.intervalId);
             this.setState({
-              break: this.state.breakCounter,
+              break: new Date(new Date().setHours(0, this.state.breakCounter, 0, 0)),
               breakPaused: true,
               mode: 'session',
               sessionPaused: false,
@@ -163,6 +163,7 @@ class App extends Component {
   render() {
     const time = this.state.mode === 'session' ? this.state.session : this.state.break;
     const timerLabel = this.state.mode === 'session' ? 'Session' : 'Break';
+    console.log('time', time);
     let seconds = time.getSeconds();
     if (seconds < 10) {
       seconds = "0" + seconds
