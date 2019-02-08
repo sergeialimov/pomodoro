@@ -48,14 +48,10 @@ class App extends Component {
       }
       if (time.getMinutes() === 0 && time.getSeconds() === 0) {
         setTimeout(() => {
+          clearInterval(this.state.intervalId);
           this.setState({
             sessionPaused: true,
-            breakPaused: false,
-            mode: 'break',
-          });
-          clearInterval(this.state.intervalId);
-          this.refresh();
-          this.setState({
+            session: this.state.sessionCounter,
             breakPaused: false,
             mode: 'break',
           });
@@ -76,13 +72,11 @@ class App extends Component {
         });
         if (time.getMinutes() === 0 && time.getSeconds() === 0) {
           setTimeout(() => {
-            this.setState({
-              breakPaused: true,
-              sessionPaused: false,
-            });
             clearInterval(this.state.intervalId);
-            this.refresh();
             this.setState({
+              break: this.state.breakCounter,
+              breakPaused: true,
+              mode: 'session',
               sessionPaused: false,
             });
             this.runSession();
