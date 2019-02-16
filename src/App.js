@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import arrowUp from './img/01.png';
 import arrowDown from './img/02.png';
+import soundPath from './sound/07.wav';
 
 class App extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class App extends Component {
     this.runSession = this.runSession.bind(this);
     this.runBreak = this.runBreak.bind(this);
     this.refresh = this.refresh.bind(this);
+    this.beep = React.createRef();
   }
 
   // autotests for FreeCodeCamp
@@ -55,6 +57,7 @@ class App extends Component {
             breakPaused: false,
             mode: 'break',
           });
+          this.beep.current.play();
           this.runBreak();
         }, 1000);
       }
@@ -163,7 +166,6 @@ class App extends Component {
   render() {
     const time = this.state.mode === 'session' ? this.state.session : this.state.break;
     const timerLabel = this.state.mode === 'session' ? 'Session' : 'Break';
-    console.log('time', time);
     let seconds = time.getSeconds();
     if (seconds < 10) {
       seconds = "0" + seconds
@@ -227,6 +229,7 @@ class App extends Component {
             <div id="timer-label">{timerLabel}</div>
             <p id="time-left">{minutes}:{seconds}</p>
           </div>
+          <audio ref={this.beep} id='beep' src={soundPath}/>
           <div id="buttons">
             <div id="start_stop" onClick={this.startPause}>start/pause</div>
             <div id="reset" onClick={this.refresh}>refresh</div>
