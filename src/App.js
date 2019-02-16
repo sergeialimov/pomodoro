@@ -119,6 +119,8 @@ class App extends Component {
       break: new Date(new Date().setHours(0, 5, 0, 0)),
       breakCounter: 5,
     });
+    this.beep.current.pause();
+    this.beep.current.load();
   }
 
   increaseSession() {
