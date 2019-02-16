@@ -64,15 +64,6 @@ h1 {
   height: 30px;
 }
 
-#break-decrement {
-}
-
-#session-decrement {
-}
-
-#session-increment {
-}
-
 #counter {
   font-size: 30px;
 }
@@ -84,18 +75,17 @@ h1 {
   margin-top: 40px;
   width: 250px;
   height: 120px;
-  background-color: gray;
+  border: solid gray 7px;
   border-radius: 25px;
 }
 
 #timer-label {
-  /* margin-top: 20px; */
   font-size: 25px;
   color: #D2C7AB;
 }
 
 #time-left {
-  margin-top: 10px;
+  margin-top: 5px;
   font-size: 50px;
   font-weight: 550;
   color: #D2C7AB;
@@ -117,6 +107,7 @@ h1 {
   color: #D2C7AB;
   line-height: 50px;
   margin-right: 5px;
+  border-radius: 5px;
 }
 
 #reset {
@@ -125,4 +116,5 @@ h1 {
   background: black;
   color: #D2C7AB;
   line-height: 50px;
+  border-radius: 5px;
 }
