@@ -4,7 +4,7 @@ import arrowUp from './img/01.png';
 import arrowDown from './img/02.png';
 import soundPath from './sound/07.wav';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -242,4 +242,4 @@ class App extends Component {
   }
 }
 
-export default App;
+App.displayName = 'Hello';
