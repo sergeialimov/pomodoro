@@ -12,6 +12,7 @@ export default class App extends Component {
         .setHours(0, 5, 0, 0)),
       breakCounter: 5,
       breakPaused: true,
+      intervalId: 0,
       mode: 'session',
       session: new Date(new Date()
         .setHours(0, 25, 0, 0)),
@@ -38,25 +39,28 @@ export default class App extends Component {
   }
 
   componentWillUnmount () {
-    clearInterval(this.state.intervalId);
+    const { intervalId } = this.state;
+    clearInterval(intervalId);
   }
 
   runSession () {
-    const time = this.state.session;
-    const intervalId = setInterval(() => {
-      if (!this.state.sessionPaused && (time.getMinutes() > 0 || time.getSeconds() > 0)) {
-        time.setSeconds(time.getSeconds() - 1);
+    const { session } = this.state;
+    const id = setInterval(() => {
+      const { sessionPaused } = this.state;
+      if (!sessionPaused && (session.getMinutes() > 0 || session.getSeconds() > 0)) {
+        session.setSeconds(session.getSeconds() - 1);
         this.setState({
-          session: time,
+          session,
         });
       }
-      if (time.getMinutes() === 0 && time.getSeconds() === 0) {
+      if (session.getMinutes() === 0 && session.getSeconds() === 0) {
         setTimeout(() => {
-          clearInterval(this.state.intervalId);
+          const { intervalId, sessionCounter } = this.state;
+          clearInterval(intervalId);
           this.setState({
             sessionPaused: true,
             session: new Date(new Date()
-              .setHours(0, this.state.sessionCounter, 0, 0)),
+              .setHours(0, sessionCounter, 0, 0)),
             breakPaused: false,
             mode: 'break',
           });
@@ -65,7 +69,7 @@ export default class App extends Component {
         }, 1000);
       }
     }, 1000);
-    this.setState({ intervalId: intervalId });
+    this.setState({ intervalId: id });
   }
 
   runBreak () {
