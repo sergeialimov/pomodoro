@@ -5,14 +5,16 @@ import arrowDown from './img/02.png';
 import soundPath from './sound/07.wav';
 
 export default class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-      break: new Date(new Date().setHours(0, 5, 0, 0)),
+      break: new Date(new Date()
+        .setHours(0, 5, 0, 0)),
       breakCounter: 5,
       breakPaused: true,
       mode: 'session',
-      session: new Date(new Date().setHours(0, 25, 0, 0)),
+      session: new Date(new Date()
+        .setHours(0, 25, 0, 0)),
       sessionCounter: 25,
       sessionPaused: true,
     };
@@ -28,18 +30,18 @@ export default class App extends Component {
   }
 
   // autotests for FreeCodeCamp
-  componentDidMount() {
-    const script = document.createElement("script");
-    script.src = "https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js";
+  componentDidMount () {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js';
     script.async = true;
     document.body.appendChild(script);
   }
 
-  componentWillUnmount() {
-     clearInterval(this.state.intervalId);
+  componentWillUnmount () {
+    clearInterval(this.state.intervalId);
   }
 
-  runSession() {
+  runSession () {
     const time = this.state.session;
     const intervalId = setInterval(() => {
       if (!this.state.sessionPaused && (time.getMinutes() > 0 || time.getSeconds() > 0)) {
@@ -53,7 +55,8 @@ export default class App extends Component {
           clearInterval(this.state.intervalId);
           this.setState({
             sessionPaused: true,
-            session: new Date(new Date().setHours(0, this.state.sessionCounter, 0, 0)),
+            session: new Date(new Date()
+              .setHours(0, this.state.sessionCounter, 0, 0)),
             breakPaused: false,
             mode: 'break',
           });
@@ -65,7 +68,7 @@ export default class App extends Component {
     this.setState({ intervalId: intervalId });
   }
 
-  runBreak() {
+  runBreak () {
     const time = this.state.break;
     const intervalId = setInterval(() => {
       if (!this.state.breakPaused) {
@@ -77,7 +80,8 @@ export default class App extends Component {
           setTimeout(() => {
             clearInterval(this.state.intervalId);
             this.setState({
-              break: new Date(new Date().setHours(0, this.state.breakCounter, 0, 0)),
+              break: new Date(new Date()
+                .setHours(0, this.state.breakCounter, 0, 0)),
               breakPaused: true,
               mode: 'session',
               sessionPaused: false,
@@ -109,63 +113,69 @@ export default class App extends Component {
     }
   }
 
-  refresh() {
+  refresh () {
     this.setState({
       mode: 'session',
       sessionPaused: true,
       breakPaused: true,
-      session: new Date(new Date().setHours(0, 25, 0, 0)),
+      session: new Date(new Date()
+        .setHours(0, 25, 0, 0)),
       sessionCounter: 25,
-      break: new Date(new Date().setHours(0, 5, 0, 0)),
+      break: new Date(new Date()
+        .setHours(0, 5, 0, 0)),
       breakCounter: 5,
     });
     this.beep.current.pause();
     this.beep.current.load();
   }
 
-  increaseSession() {
+  increaseSession () {
     const minutes = this.state.session.getMinutes();
     const hours = this.state.session.getHours();
     if (this.state.sessionPaused && minutes < 60 && hours === 0) {
       this.setState({
-        session: new Date(new Date().setHours(0, this.state.sessionCounter + 1, 0, 0)),
+        session: new Date(new Date()
+          .setHours(0, this.state.sessionCounter + 1, 0, 0)),
         sessionCounter: this.state.sessionCounter + 1,
       });
     }
   }
 
-  decreaseSession() {
+  decreaseSession () {
     const minutes = this.state.session.getMinutes();
     if (this.state.sessionPaused && minutes > 1) {
       this.setState({
-        session: new Date(new Date().setHours(0, this.state.sessionCounter - 1, 0, 0)),
+        session: new Date(new Date()
+          .setHours(0, this.state.sessionCounter - 1, 0, 0)),
         sessionCounter: this.state.sessionCounter - 1,
       });
     }
   }
 
-  increaseBreak() {
+  increaseBreak () {
     const minutes = this.state.break.getMinutes();
     const hours = this.state.break.getHours();
     if (this.state.sessionPaused && minutes < 60  && hours === 0) {
       this.setState({
-        break: new Date(new Date().setHours(0, this.state.breakCounter + 1, 0, 0)),
+        break: new Date(new Date()
+          .setHours(0, this.state.breakCounter + 1, 0, 0)),
         breakCounter: this.state.breakCounter + 1,
       });
     }
   }
 
-  decreaseBreak() {
+  decreaseBreak () {
     const minutes = this.state.break.getMinutes();
     if (this.state.sessionPaused && minutes > 1) {
       this.setState({
-        break: new Date(new Date().setHours(0, this.state.breakCounter - 1, 0, 0)),
+        break: new Date(new Date()
+          .setHours(0, this.state.breakCounter - 1, 0, 0)),
         breakCounter: this.state.breakCounter - 1,
       });
     }
   }
 
-  render() {
+  render () {
     const time = this.state.mode === 'session' ? this.state.session : this.state.break;
     const timerLabel = this.state.mode === 'session' ? 'Session' : 'Break';
     let seconds = time.getSeconds();
