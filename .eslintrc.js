@@ -15,7 +15,7 @@ module.exports = {
     StripeCheckout: true,
   },
   rules: {
-    'no-console': 'off',
+    'no-console': 'error',
     'react/jsx-key': 'error',
     'react/display-name': ['error', { ignoreTranspilerName: true }],
     'react/prefer-es6-class': 'off',
