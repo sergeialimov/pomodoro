@@ -8,7 +8,7 @@ export default class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      break: new Date(new Date()
+      breakTime: new Date(new Date()
         .setHours(0, 5, 0, 0)),
       breakCounter: 5,
       breakPaused: true,
@@ -73,19 +73,21 @@ export default class App extends Component {
   }
 
   runBreak () {
-    const time = this.state.break;
-    const intervalId = setInterval(() => {
-      if (!this.state.breakPaused) {
-        time.setSeconds(time.getSeconds() - 1);
+    const { breakTime } = this.state;
+    const id = setInterval(() => {
+      const { breakPaused } = this.state;
+      if (!breakPaused) {
+        breakTime.setSeconds(breakTime.getSeconds() - 1);
         this.setState({
-          break: time,
+          break: breakTime,
         });
-        if (time.getMinutes() === 0 && time.getSeconds() === 0) {
+        if (breakTime.getMinutes() === 0 && breakTime.getSeconds() === 0) {
           setTimeout(() => {
-            clearInterval(this.state.intervalId);
+            const { intervalId, breakCounter } = this.state;
+            clearInterval(intervalId);
             this.setState({
               break: new Date(new Date()
-                .setHours(0, this.state.breakCounter, 0, 0)),
+                .setHours(0, breakCounter, 0, 0)),
               breakPaused: true,
               mode: 'session',
               sessionPaused: false,
@@ -95,7 +97,7 @@ export default class App extends Component {
         }
       }
     }, 1000);
-    this.setState({ intervalId: intervalId });
+    this.setState({ intervalId: id });
   }
 
   startPause() {
@@ -180,7 +182,7 @@ export default class App extends Component {
   }
 
   render () {
-    const time = this.state.mode === 'session' ? this.state.session : this.state.break;
+    const time = this.state.mode === 'session' ? this.state.session : this.state.breakTime;
     const timerLabel = this.state.mode === 'session' ? 'Session' : 'Break';
     let seconds = time.getSeconds();
     if (seconds < 10) {
