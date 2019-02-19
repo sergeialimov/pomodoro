@@ -155,12 +155,13 @@ export default class App extends Component {
   }
 
   decreaseSession () {
-    const minutes = this.state.session.getMinutes();
-    if (this.state.sessionPaused && minutes > 1) {
+    const { session, sessionPaused, sessionCounter } = this.state;
+    const minutes = session.getMinutes();
+    if (sessionPaused && minutes > 1) {
       this.setState({
         session: new Date(new Date()
-          .setHours(0, this.state.sessionCounter - 1, 0, 0)),
-        sessionCounter: this.state.sessionCounter - 1,
+          .setHours(0, sessionCounter - 1, 0, 0)),
+        sessionCounter: sessionCounter - 1,
       });
     }
   }
