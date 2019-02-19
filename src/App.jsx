@@ -180,12 +180,13 @@ export default class App extends Component {
   }
 
   decreaseBreak () {
-    const minutes = this.state.break.getMinutes();
-    if (this.state.sessionPaused && minutes > 1) {
+    const { breakTime, breakCounter, sessionPaused } = this.state;
+    const minutes = breakTime.getMinutes();
+    if (sessionPaused && minutes > 1) {
       this.setState({
-        break: new Date(new Date()
-          .setHours(0, this.state.breakCounter - 1, 0, 0)),
-        breakCounter: this.state.breakCounter - 1,
+        breakTime: new Date(new Date()
+          .setHours(0, breakCounter - 1, 0, 0)),
+        breakCounter: breakCounter - 1,
       });
     }
   }
