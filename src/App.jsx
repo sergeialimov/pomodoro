@@ -113,14 +113,14 @@ export default class App extends Component {
         this.runSession();
       }
       this.setState({
-        sessionPaused,
+        sessionPaused: !sessionPaused,
       });
     } else {
       if (breakPaused) {
         this.runBreak();
       }
       this.setState({
-        breakPaused,
+        breakPaused: !breakPaused,
       });
     }
   }
