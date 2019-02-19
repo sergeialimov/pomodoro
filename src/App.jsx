@@ -142,13 +142,14 @@ export default class App extends Component {
   }
 
   increaseSession () {
-    const minutes = this.state.session.getMinutes();
-    const hours = this.state.session.getHours();
-    if (this.state.sessionPaused && minutes < 60 && hours === 0) {
+    const { session, sessionPaused, sessionCounter } = this.state;
+    const minutes = session.getMinutes();
+    const hours = session.getHours();
+    if (sessionPaused && minutes < 60 && hours === 0) {
       this.setState({
         session: new Date(new Date()
-          .setHours(0, this.state.sessionCounter + 1, 0, 0)),
-        sessionCounter: this.state.sessionCounter + 1,
+          .setHours(0, sessionCounter + 1, 0, 0)),
+        sessionCounter: sessionCounter + 1,
       });
     }
   }
