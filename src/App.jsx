@@ -100,21 +100,27 @@ export default class App extends Component {
     this.setState({ intervalId: id });
   }
 
-  startPause() {
-    clearInterval(this.state.intervalId);
-    if (this.state.mode === 'session') {
-      if (this.state.sessionPaused) {
+  startPause () {
+    const {
+      intervalId,
+      mode,
+      sessionPaused,
+      breakPaused,
+    } = this.state;
+    clearInterval(intervalId);
+    if (mode === 'session') {
+      if (sessionPaused) {
         this.runSession();
       }
       this.setState({
-        sessionPaused: !this.state.sessionPaused,
+        sessionPaused,
       });
     } else {
-      if (this.state.breakPaused) {
+      if (breakPaused) {
         this.runBreak();
       }
       this.setState({
-        breakPaused: !this.state.breakPaused,
+        breakPaused,
       });
     }
   }
